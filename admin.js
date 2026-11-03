@@ -1,0 +1,8 @@
+const C={url:"YOUR_SUPABASE_URL",key:"YOUR_SUPABASE_PUBLISHABLE_KEY"};let s=null;
+if(window.supabase&&!C.url.startsWith("YOUR_"))s=window.supabase.createClient(C.url,C.key);
+const $=id=>document.getElementById(id);
+$("loginBtn").onclick=async()=>{if(!s)return $("loginMsg").textContent="Add Supabase URL/key in admin.js first.";const{error}=await s.auth.signInWithPassword({email:$("email").value,password:$("password").value});if(error)$("loginMsg").textContent=error.message;else show()};
+async function show(){if(!s)return;const{data:{user}}=await s.auth.getUser();if(!user)return;$("login").hidden=true;$("dashboard").hidden=false;const [{count:events},{count:sales}]=await Promise.all([s.from("events").select("*",{count:"exact",head:true}),s.from("orders").select("*",{count:"exact",head:true})]);$("events").textContent=events??0;$("sales").textContent=sales??0;const{data:l}=await s.from("live_settings").select("*").eq("id",1).maybeSingle();if(l){$("youtubeId").value=l.youtube_id||"";$("liveOn").checked=!!l.online}}
+$("saveLive").onclick=async()=>{if(!s)return;await s.from("live_settings").upsert({id:1,youtube_id:$("youtubeId").value.trim(),online:$("liveOn").checked});alert("Live settings updated.")};
+$("saveEvent").onclick=async()=>{if(!s)return;const v={title:$("eventName").value,event_date:new Date($("eventDate").value).toISOString(),venue:$("venue").value,ticket_url:$("ticketUrl").value,published:true};const{error}=await s.from("events").insert(v);alert(error?error.message:"Event published.")};
+$("logout").onclick=async()=>{await s?.auth.signOut();location.reload()};show();

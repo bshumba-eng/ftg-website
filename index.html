@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FINESSE GAME — Fight Night</title>
+<meta name="description" content="Finesse Game Promotions — fighters first.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header><a class="logo" href="#">FTG<span>+</span></a><nav><a href="#event">EVENT</a><a href="#fighters">FIGHTERS</a><a href="#media">MEDIA</a><a href="#live">LIVE</a><a href="#about">ABOUT</a></nav><a class="navbtn" href="#tickets">GET TICKETS ↗</a><button id="menu">☰</button></header>
+<main>
+<section class="hero"><div class="hero-bg"></div><div class="hero-content"><p class="eyebrow">FINESSE GAME PROMOTIONS</p><h1>FIGHTERS<br><em>FIRST.</em></h1><p>Boxing events. Hungry fighters. Big nights. Welcome to the new home of FTG.</p><div><a class="btn" href="#tickets">GET TICKETS ↗</a><a class="ghost" href="#live">WATCH LIVE ▶</a></div></div><div class="stamp">FTG<br><small>LIVE</small></div></section>
+<section class="ticker">NO SHORTCUTS • NO HANDOUTS • FIGHTERS FIRST • FINESSE THE GAME • NO SHORTCUTS •</section>
+<section id="event" class="section"><div class="head"><p class="eyebrow">NEXT EVENT</p><h2 id="eventTitle">FIGHT NIGHT</h2><p id="eventDescription">The next FTG event is coming. Check back for the official card, venue and ticket release.</p></div><div class="eventgrid"><div class="poster"><b>FTG</b><strong>FIGHT<br><em>NIGHT</em></strong><span id="eventVenue">VENUE TBA</span></div><div><div class="count"><div><b id="d">--</b><small>DAYS</small></div><div><b id="h">--</b><small>HOURS</small></div><div><b id="m">--</b><small>MINUTES</small></div><div><b id="s">--</b><small>SECONDS</small></div></div><p class="meta">DATE <b id="eventDate">COMING SOON</b></p><p class="meta">STATUS <b id="eventStatus">UPCOMING</b></p><a class="textlink" href="#tickets">RESERVE YOUR PLACE ↗</a></div></div></section>
+<section id="fighters" class="dark section"><div class="head"><p class="eyebrow">THE CARD</p><h2>MEET THE <em>FIGHTERS.</em></h2></div><div id="fightersGrid" class="cards"></div></section>
+<section id="media" class="section"><div class="head"><p class="eyebrow">FTG MEDIA</p><h2>WATCH.<br><em>REPLAY.</em></h2></div><div id="mediaGrid" class="media-grid"></div></section>
+<section id="live" class="dark section"><div class="livehead"><div><p class="eyebrow">FIGHT NIGHT CONTROL ROOM</p><h2>LIVE<br><em>FROM THE RING.</em></h2></div><div id="liveBadge" class="badge">● OFFLINE</div></div><div class="player"><div id="liveEmpty"><div class="play">▶</div><h3>LIVE STREAM</h3><p>When FTG goes live, the broadcast appears here automatically.</p></div><iframe id="liveFrame" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen hidden></iframe></div><div class="livebar"><span>FTG LIVE</span><span id="liveEvent">EVENT TBA</span><span id="liveClock">--:--</span></div></section>
+<section id="tickets" class="section tickets"><div><p class="eyebrow">DON'T WATCH FROM HOME</p><h2>GET IN<br><em>THE ROOM.</em></h2><p>Tickets are released through the official FTG event listing.</p></div><div class="ticketbox"><span>FTG / LIVE EVENT</span><strong id="ticketText">TICKETS<br><em>COMING SOON</em></strong><a id="ticketButton" class="btn full" href="#tickets">JOIN THE WAITLIST ↗</a></div></section>
+<section id="about" class="section about"><div class="big">FTG</div><div><p class="eyebrow">WHO WE ARE</p><h2>THE FIGHTERS<br><em>COME FIRST.</em></h2><p>Finesse Game Promotions is built around the fighters, the work and the moments that happen when preparation meets pressure.</p><a class="textlink" href="https://www.instagram.com/finessethegame_ftg/" target="_blank">FOLLOW FTG ON INSTAGRAM ↗</a></div></section>
+</main>
+<footer><b>FINESSE GAME</b><span>© 2026 FTG</span><a href="#">BACK TO TOP ↑</a></footer>
+<script src="app.js"></script>
+</body></html>
