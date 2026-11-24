@@ -11,6 +11,7 @@
      This is a demo gate for a static site: replace with real authentication (Supabase) for production. */
   var SALT = "ftg-2026";
   var HASH = "dc7d9cad1d7004cfdc40b9c4a157c6672267da063e4cf4c24e1ffed850c1aeb5";
+  var DEMO_HASH = "1a33f692172861371257bb1c2f04530ecf0580aea08fa224ef36d184522edf03"; /* public demo login: admin / admin */
   var SESSION_KEY = "ftg.admin.session", LOCK_KEY = "ftg.admin.lock";
 
   var SRCS = [
@@ -32,7 +33,7 @@
 
   function renderLogin() {
     document.title = "Admin sign in | FTG";
-    root.innerHTML = '<div class="login"><div class="login__box"><div class="login__logo">' + art.logo("logo--lg") + '</div><h1 class="d">Admin sign in</h1><p class="sub">FTG team access only.</p>' +
+    root.innerHTML = '<div class="login"><div class="login__box"><div class="login__logo">' + art.logo("logo--lg") + '</div><h1 class="d">Admin sign in</h1><p class="sub">FTG team access only. Demo login: <b>admin</b> / <b>admin</b></p>' +
       '<form id="lf" novalidate><div class="field"><label for="lu">Username</label><input id="lu" name="lu" autocomplete="username" autocapitalize="none" spellcheck="false" required></div>' +
       '<div class="field"><label for="lp">Password</label><div class="pw"><input id="lp" name="lp" type="password" autocomplete="current-password" required><button type="button" id="lt" aria-label="Show password">Show</button></div></div>' +
       '<button class="btn" type="submit">' + icon("lock") + 'Sign in</button><div class="login__err" id="le" role="alert" aria-live="assertive"></div></form>' +
@@ -46,7 +47,7 @@
       var u = f.elements.lu.value.trim().toLowerCase(), p = f.elements.lp.value;
       if (!u || !p) { err.textContent = "Enter your username and password."; return; }
       sha(SALT + ":" + u + ":" + p).then(function (h) {
-        if (h === HASH) {
+        if (h === HASH || h === DEMO_HASH) {
           setLock({}); sessionStorage.setItem(SESSION_KEY, JSON.stringify({ exp: Date.now() + 8 * 36e5 }));
           location.hash = "#/dashboard"; start();
         } else {
