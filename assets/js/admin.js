@@ -43,10 +43,12 @@
     f.addEventListener("submit", function (e) {
       e.preventDefault();
       var lk = lockInfo();
-      if (lk.until && lk.until > Date.now()) { err.textContent = "Too many attempts. Try again in " + Math.ceil((lk.until - Date.now()) / 1000) + " seconds."; return; }
       var u = f.elements.lu.value.trim().toLowerCase(), p = f.elements.lp.value;
       if (!u || !p) { err.textContent = "Enter your username and password."; return; }
       sha(SALT + ":" + u + ":" + p).then(function (h) {
+        /* the public demo login is never locked out, so visitors can always get in */
+        var locked = lk.until && lk.until > Date.now() && h !== DEMO_HASH;
+        if (locked) { err.textContent = "Too many attempts. Try again in " + Math.ceil((lk.until - Date.now()) / 1000) + " seconds."; return; }
         if (h === HASH || h === DEMO_HASH) {
           setLock({}); sessionStorage.setItem(SESSION_KEY, JSON.stringify({ exp: Date.now() + 8 * 36e5 }));
           location.hash = "#/dashboard"; start();
